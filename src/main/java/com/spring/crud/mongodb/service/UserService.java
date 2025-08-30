@@ -15,15 +15,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<UserDTO> findAllUsers(){
+    public List<UserDTO> findAll(){
 
         return userRepository.findAll().stream().map( x -> new UserDTO(x)).toList();
     }
 
-    public Optional<UserDTO> findUserById(Long id) {
-
-        return userRepository.findById(id).stream().map(x -> new UserDTO(x)).toList();
+    public Optional<UserDTO> findById(Long id) {
+        return userRepository.findById(id)
+                .map(UserDTO::new);
     }
+
 
     public UserDTO createUser(UserDTO userDTO){
 
