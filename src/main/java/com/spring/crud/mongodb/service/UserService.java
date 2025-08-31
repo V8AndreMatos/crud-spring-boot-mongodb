@@ -15,9 +15,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<UserDTO> findAll(){
-
-        return userRepository.findAll().stream().map( x -> new UserDTO(x)).toList();
+    public List<UserDTO> findAll() {
+        return userRepository.findAll()
+                .stream()
+                .map(UserDTO::new)
+                .toList();
     }
 
     public Optional<UserDTO> findById(Long id) {
@@ -44,4 +46,8 @@ public class UserService {
         userRepository.findById(id);
     }
 
+    public long count() {
+
+        return userRepository.count();
+    }
 }

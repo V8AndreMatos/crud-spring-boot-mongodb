@@ -3,7 +3,7 @@ package com.spring.crud.mongodb.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "user_entity")
+@Document(collection = "user_entity")
 public class UserEntity {
 
     @Id

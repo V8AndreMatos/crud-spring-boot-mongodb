@@ -12,6 +12,11 @@ public class UserDTO {
 
     }
 
+    public UserEntity toEntity() {
+        return new UserEntity(id, name, email);
+    }
+
+
     public UserDTO(UserEntity entity){
 
         id = entity.getId();
