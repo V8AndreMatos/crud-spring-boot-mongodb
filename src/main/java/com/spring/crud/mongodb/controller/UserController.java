@@ -28,7 +28,7 @@ public class UserController {
         //Testing just "/"
         @GetMapping("/")
         public String home() {
-            return "🚀 Aplicação Spring Boot + MongoDB rodando!";
+            return " Spring Boot + MongoDB Application Ok!";
         }
     }
 
