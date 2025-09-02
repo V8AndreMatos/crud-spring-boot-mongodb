@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    //Finf a list of users
+    //Find a list of users
     public List<UserDTO> findAll() {
         return userRepository.findAll()
                 .stream()
@@ -27,7 +27,7 @@ public class UserService {
     //Find a user by ID
     public UserDTO findById(String id){
         System.out.println(">>>Searching for user with ID : " + id);
-        UserEntity user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with  id " +id));
+        UserEntity user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User with  id " +id+ " Not found"));
         return new UserDTO(user);
     }
 
