@@ -2,6 +2,7 @@ package com.spring.crud.mongodb.controller;
 
 import com.spring.crud.mongodb.dto.UserCountResponseDTO;
 import com.spring.crud.mongodb.dto.UserDTO;
+import com.spring.crud.mongodb.entity.UserEntity;
 import com.spring.crud.mongodb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,8 +41,6 @@ public class UserController {
 
     }
 
-
-
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         UserDTO user = userService.findById(id); // Lança ResourceNotFoundException se não existir
@@ -53,6 +52,13 @@ public class UserController {
     public UserCountResponseDTO getUserCount() {
         long total = userService.countUsers();
         return new UserCountResponseDTO(total);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable String id, @RequestBody UserDTO userDTO){
+
+        return userService.update(id , userDTO).map(ResponseEntity::ok) // retorna 200 + usuário atualizado
+                          .orElseGet(() -> ResponseEntity.notFound().build()); // retorna 404 se não encontrar o user
     }
 
     @DeleteMapping("/{id}")
